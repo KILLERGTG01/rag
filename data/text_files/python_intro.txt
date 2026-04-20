@@ -1,0 +1,6 @@
+Python Programming Introduction 
+
+    Python is a high-level, interpreted programming language created by Guido van Rossum in 1991. Known for its readable, English-like syntax, Python emphasizes code readability with
+  significant whitespace. It supports multiple paradigms: procedural, object-oriented, and functional programming.
+
+  Python runs on Windows, macOS, Linux, and many other platforms. It comes pre-installed on most Unix systems.
