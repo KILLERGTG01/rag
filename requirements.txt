@@ -6,3 +6,8 @@ pymupdf
 sentence-transformers
 faiss-cpu
 chromadb
+torch
+transformers
+accelerate
+python-dotenv
+scikit-learn

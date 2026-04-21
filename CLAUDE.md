@@ -1,3 +1,32 @@
+## Codebase Overview
+
+### What's Built (notebook/document.ipynb)
+
+**Data Pipeline:**
+- Loads `.txt` files via `TextLoader` / `DirectoryLoader`
+- Loads `.pdf` files via `PyMuPDFLoader`
+- Splits docs with `RecursiveCharacterTextSplitter` (chunk_size=1000, overlap=200)
+
+**Core Classes:**
+
+| Class | File | Purpose |
+|-------|------|---------|
+| `EmbeddingManager` | notebook | Wraps `sentence-transformers/all-MiniLM-L6-v2` (384-dim) |
+| `VectorStore` | notebook | ChromaDB wrapper, persists to `data/vector_store/`, collection `pdf_documents` |
+| `RAGRetriever` | notebook | Queries ChromaDB by embedding similarity, returns top-k chunks |
+
+**Data directories:**
+- `data/text_files/` — raw `.txt` docs
+- `data/pdf_files/` — raw `.pdf` docs
+- `data/vector_store/` — ChromaDB persistence
+
+**NOT YET BUILT:**
+- LLM generation layer (Gemma 2B integration in progress)
+- `src/` module extraction (classes still live in notebook)
+- `main.py` is a stub only
+
+**Dependencies:** `langchain`, `sentence-transformers`, `chromadb`, `faiss-cpu`, `pypdf`, `pymupdf`
+
 <!-- code-review-graph MCP tools -->
 ## MCP Tools: code-review-graph
 
