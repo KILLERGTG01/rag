@@ -7,25 +7,36 @@
 - Loads `.pdf` files via `PyMuPDFLoader`
 - Splits docs with `RecursiveCharacterTextSplitter` (chunk_size=1000, overlap=200)
 
-**Core Classes:**
+**Core Classes (Sections 1–3, cells 0–16):**
 
-| Class | File | Purpose |
+| Class | Cell | Purpose |
 |-------|------|---------|
-| `EmbeddingManager` | notebook | Wraps `sentence-transformers/all-MiniLM-L6-v2` (384-dim) |
-| `VectorStore` | notebook | ChromaDB wrapper, persists to `data/vector_store/`, collection `pdf_documents` |
-| `RAGRetriever` | notebook | Queries ChromaDB by embedding similarity, returns top-k chunks |
+| `EmbeddingManager` | 8 | Wraps `sentence-transformers/all-MiniLM-L6-v2` (384-dim) |
+| `VectorStore` | 11 | ChromaDB wrapper, persists to `../data/vector_store/`, collection `pdf_documents` |
+| `RAGRetriever` | 14 | Queries ChromaDB by embedding similarity, returns top-k chunks |
+
+**LLM Integration (Section 4, cells 17–18):**
+
+| Cell | Purpose |
+|------|---------|
+| 17 | `build_rag_prompt`, `GemmaOllama` class, `rag_query_ollama` — full RAG via Ollama |
+| 18 | Demo query: retrieves 3 chunks, generates answer, prints sources |
+
+Gemma 2B runs locally via **Ollama**: `ollama pull gemma:2b` + `ollama serve`
+
+**Known bugs fixed:**
+- `RAGRetriever.retrieve()` had `return` inside `for` loop — fixed in cell 14 (return now outside loop)
 
 **Data directories:**
 - `data/text_files/` — raw `.txt` docs
 - `data/pdf_files/` — raw `.pdf` docs
-- `data/vector_store/` — ChromaDB persistence
+- `data/vector_store/` — ChromaDB persistence (286 docs indexed)
 
 **NOT YET BUILT:**
-- LLM generation layer (Gemma 2B integration in progress)
-- `src/` module extraction (classes still live in notebook)
+- `src/` module extraction (all classes still live in notebook)
 - `main.py` is a stub only
 
-**Dependencies:** `langchain`, `sentence-transformers`, `chromadb`, `faiss-cpu`, `pypdf`, `pymupdf`
+**Dependencies:** `langchain`, `sentence-transformers`, `chromadb`, `faiss-cpu`, `pypdf`, `pymupdf`, `python-dotenv`
 
 <!-- code-review-graph MCP tools -->
 ## MCP Tools: code-review-graph
